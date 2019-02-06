@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Monstro</title>
+    <style>
+      #app {
+        display: flex;
+        justify-content: center;
+        height: 95vh;
+        align-items: center;
+      }
+      h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        position: absolute;
+
+      }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+      const adjs = [
+    'mostro', 'genio', 'figura', 'crack', 'mastodonte', 'batería de grupo', 'infantil', 'cuádruple bombo', 'ídolo', 'chaval', 'champion', 'referente', 'maquina', 'artista', 'elemento', 'jefe', 'fiera', 'maestro', 'socio', 'golfo', 'valiente', 'héroe', 'tanque', 'fenómeno', 'gacela', 'tigre', 'bestia', 'titán', 'gigante', 'prenda', 'coloso', 'hacha', 'mostrenco', 'campeón', 'helicóptero', 'killer', 'ciclón', 'pieza', 'brontosaurio', 'vikingo', 'vividor', 'crack', 'animal', 'gigante', 'caimán', 'tiranosaurio', 'superman', 'semental', 'ninja', 'genio', 'tsunami', 'león', 'terminator', 'goliat', 'terremoto', 'tigre', 'vaquero', 'tanque', 'mole', 'samurai', 'coloso', 'paladin', 'willyrex', 'lobezno', 'velociraptor', 'espectro', 'godzilla', 'caza de combate', 'adamantium', 'robocop', 'zeus', 'capitán', 'king kong', 'depredador', 'tornado', 'monster truck', 'presa canario', 'johnny bravo', 'mastodonte', 'coronel', 'canallita', 'champion', 'chulazo', 'truhan', 'maquinola'
+    ];
+
+    const appDiv = document.getElementById('app');
+
+    const adj = adjs[Math.floor(Math.random() * adjs.length)];
+
+    appDiv.innerHTML = `<h1>${adj}</h1>`;
+
+    </script>
+</body>
+</html>
