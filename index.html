@@ -54,7 +54,7 @@
 
     }, { id: -1, highterRandomValue: -1 }).id;
 
-    let adj = adjsMap.get(randomAdjId);
+    const adj = adjsMap.get(randomAdjId);
 
     const chance = adj.chance *= CHANCEMULTIPLIER;
     sessionStorage.setItem(randomAdjId, chance);
