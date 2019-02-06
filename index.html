@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,18 +24,45 @@
       }
     </style>
 </head>
+
 <body>
-    <div id="app"></div>
-    <script>
-      const adjs = [
-    'mostro', 'genio', 'figura', 'crack', 'mastodonte', 'batería de grupo', 'infantil', 'cuádruple bombo', 'ídolo', 'chaval', 'champion', 'referente', 'maquina', 'artista', 'elemento', 'jefe', 'fiera', 'maestro', 'socio', 'golfo', 'valiente', 'héroe', 'tanque', 'fenómeno', 'gacela', 'tigre', 'bestia', 'titán', 'gigante', 'prenda', 'coloso', 'hacha', 'mostrenco', 'campeón', 'helicóptero', 'killer', 'ciclón', 'pieza', 'brontosaurio', 'vikingo', 'vividor', 'crack', 'animal', 'gigante', 'caimán', 'tiranosaurio', 'superman', 'semental', 'ninja', 'genio', 'tsunami', 'león', 'terminator', 'goliat', 'terremoto', 'tigre', 'vaquero', 'tanque', 'mole', 'samurai', 'coloso', 'paladin', 'willyrex', 'lobezno', 'velociraptor', 'espectro', 'godzilla', 'caza de combate', 'adamantium', 'robocop', 'zeus', 'capitán', 'king kong', 'depredador', 'tornado', 'monster truck', 'presa canario', 'johnny bravo', 'mastodonte', 'coronel', 'canallita', 'champion', 'chulazo', 'truhan', 'maquinola', 'mamotreto', 'mosampo', 'piano de cola'
+  
+  <div id="app"></div>
+  <script>
+
+    const CHANCEMULTIPLIER = 0.9;
+
+    const adjs = [
+      'mostro', 'genio', 'figura', 'tifón', 'capo', 'torero', 'número 1', 'crack', 'mastodonte', 'batería de grupo', 'infantil', 'cuádruple bombo', 'ídolo', 'chaval', 'champion', 'referente', 'maquina', 'artista', 'elemento', 'jefe', 'fiera', 'maestro', 'socio', 'golfo', 'valiente', 'héroe', 'tanque', 'fenómeno', 'gacela', 'tigre', 'bestia', 'titán', 'gigante', 'prenda', 'coloso', 'hacha', 'mostrenco', 'campeón', 'helicóptero', 'killer', 'ciclón', 'pieza', 'brontosaurio', 'vikingo', 'vividor', 'crack', 'animal', 'gigante', 'caimán', 'tiranosaurio', 'superman', 'semental', 'ninja', 'genio', 'tsunami', 'león', 'terminator', 'goliat', 'terremoto', 'tigre', 'vaquero', 'tanque', 'mole', 'samurai', 'coloso', 'paladin', 'willyrex', 'lobezno', 'velociraptor', 'espectro', 'godzilla', 'caza de combate', 'adamantium', 'robocop', 'zeus', 'capitán', 'king kong', 'depredador', 'tornado', 'monster truck', 'presa canario', 'johnny bravo', 'mastodonte', 'coronel', 'canallita', 'champion', 'chulazo', 'truhan', 'maquinola', 'mamotreto', 'mosampo', 'piano de cola'
     ];
 
+    const adjsMap = new Map();
+    adjs.forEach((value, index) => {
+      if (sessionStorage.getItem(index)) {
+        const sessionChance = sessionStorage.getItem(index)
+        return adjsMap.set(index, { value, chance: sessionChance });
+      }
+      return adjsMap.set(index, { value, chance: 1 });
+    });
+
+    const randomAdjId = Array.from(adjsMap.values()).reduce(({ id, highterRandomValue }, item, index) => {
+
+      const currentRandomValue = Math.random() * item.chance * adjsMap.size;
+
+      return currentRandomValue > highterRandomValue
+        ? { id: index, highterRandomValue: currentRandomValue }
+        : { id, highterRandomValue };
+
+    }, { id: -1, highterRandomValue: -1 }).id;
+
+    const adj = adjsMap.get(randomAdjId);
+
+    const chance = adj.chance *= CHANCEMULTIPLIER;
+    sessionStorage.setItem(randomAdjId, chance);
+
     const appDiv = document.getElementById('app');
-
-    const adj = adjs[Math.floor(Math.random() * adjs.length)];
-
-    appDiv.innerHTML = `<h1>${adj}</h1>`;
-    </script>
+    appDiv.innerHTML = `<h1>${adj.value}</h1>`;
+  </script>
 </body>
+
 </html>
