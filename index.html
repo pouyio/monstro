@@ -45,15 +45,15 @@
       return adjsMap.set(index, { value, chance: 1 });
     });
 
-    const randomAdjId = Array.from(adjsMap.values()).reduce(({ id, highterRandomValue }, item, index) => {
+    const randomAdjId = Array.from(adjsMap.values()).reduce(({ id, higherRandomValue }, item, index) => {
 
       const currentRandomValue = Math.random() * item.chance * adjsMap.size;
 
-      return currentRandomValue > highterRandomValue
-        ? { id: index, highterRandomValue: currentRandomValue }
-        : { id, highterRandomValue };
+      return currentRandomValue > higherRandomValue
+        ? { id: index, higherRandomValue: currentRandomValue }
+        : { id, higherRandomValue };
 
-    }, { id: -1, highterRandomValue: -1 }).id;
+    }, { id: -1, higherRandomValue: -1 }).id;
 
     const adj = adjsMap.get(randomAdjId);
 
