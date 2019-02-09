@@ -196,13 +196,16 @@
       return `#${sortedValueToHexadecimal}${randomAlpha}`;
     }
     // --------------------------------- //
-    // Capturing r || R key
+    // Capturing keys
     function rKey(e) {
+      
       if (e && (e.code === 'KeyR')) {
         appDiv.className = 'fade-out';
         setTimeout(() => {
           location.reload();
         }, 400);
+      } else if (e.key > 0) {
+        appDiv.style.background = `url(/monstro/images/${e.key}.jpg) center`;
       }
     }
   </script>
