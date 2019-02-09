@@ -23,6 +23,43 @@
       font-size: 10rem;
       margin: 0;
     }
+
+    .fade-in {
+      opacity: 1;
+      animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: .1;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .fade-out {
+      opacity: 0;
+      animation: fadeOut 0.5s, ease;
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: .1;
+      }
+    }
+
+    .fixed {
+      position: fixed;
+      left: 1%;
+      bottom: 1%;
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -55,13 +92,13 @@
 
     //Randomize backgroundColor
     const randomBackgroundColor = getRandomBackgroundColor(((randomAdjId + 1)), (chance * 1000));
-    console.warn(randomBackgroundColor);
-
 
     // Template
     const appDiv = document.getElementById('app');
+    appDiv.className = 'fade-in';
     appDiv.style.backgroundColor = randomBackgroundColor;
-    appDiv.innerHTML = `<h1>${adj.value}</h1>`;
+    appDiv.innerHTML = `<small class="fixed">Press r to random</small><h1>${adj.value}</h1>`;
+    window.onkeypress = rKey;
 
     // Functions
     // --------------------------------- //
@@ -116,7 +153,16 @@
 
       return `#${sortedValueToHexadecimal}${randomAlpha}`;
     }
-
+    // --------------------------------- //
+    // Capturing r || R key
+    function rKey(e) {
+      if (e && (e.code === 'KeyR')) {
+        appDiv.className = 'fade-out';
+        setTimeout(() => {
+          location.reload();
+        }, 400);
+      }
+    }
   </script>
 </body>
 
