@@ -224,13 +224,13 @@
     // Template
     const appDiv = document.getElementById('app');
     appDiv.innerHTML = `<small class="fixed">Press r to random</small><h1 id="value">${updatedAdjObject.value}</h1>`;
-    randomizeTemplate(randomBackgroundColor);
+    updateTemplate(randomBackgroundColor);
     window.onkeypress = rKey;
 
     // Functions
     // --------------------------------- //
     // Template
-    function randomizeTemplate(randomBackgroundColor) {
+    function updateTemplate(randomBackgroundColor) {
       appDiv.className = 'fade-in';
       appDiv.style.backgroundColor = randomBackgroundColor;
     }
@@ -301,7 +301,7 @@
           const updatedAdjObject = updateRandomAdjMap(adjsMap);
           const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
           document.getElementById('value').innerHTML = updatedAdjObject.value;
-          randomizeTemplate(randomBackgroundColor);
+          updateTemplate(randomBackgroundColor);
         }, 400);
       }
     }
