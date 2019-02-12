@@ -2,71 +2,161 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/x-icon" href="/monstro/favicon.ico">
-    <title>Monstro</title>
-    <style>
-        html, body, div, span, applet, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        a, abbr, acronym, address, big, cite, code,
-        del, dfn, em, img, ins, kbd, q, s, samp,
-        small, strike, strong, sub, sup, tt, var,
-        b, u, i, center,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, embed, 
-        figure, figcaption, footer, header, hgroup, 
-        menu, nav, output, ruby, section, summary,
-        time, mark, audio, video {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
-        }
-        /* HTML5 display-role reset for older browsers */
-        article, aside, details, figcaption, figure, 
-        footer, header, hgroup, menu, nav, section {
-            display: block;
-        }
-        body {
-            line-height: 1;
-        }
-        ol, ul {
-            list-style: none;
-        }
-        blockquote, q {
-            quotes: none;
-        }
-        blockquote:before, blockquote:after,
-        q:before, q:after {
-            content: '';
-            content: none;
-        }
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-      #app {
-        display: flex;
-        justify-content: center;
-        height: 100vh;
-        align-items: center;
-        flex-wrap: wrap;
-        text-align: center;
-      }
-      h1 {
-        font-family: "Arial Black", Gadget, sans-serif;
-        position: absolute;
-        font-size: 10rem;
-        margin: 0;
-        word-break: break-word;
-      }
-      .fade-in {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/x-icon" href="/monstro/favicon.ico">
+  <title>Monstro</title>
+  <style>
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+
+    /* HTML5 display-role reset for older browsers */
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+      display: block;
+    }
+
+    body {
+      line-height: 1;
+    }
+
+    ol,
+    ul {
+      list-style: none;
+    }
+
+    blockquote,
+    q {
+      quotes: none;
+    }
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+      content: '';
+      content: none;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    #app {
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      align-items: center;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Arial Black", Gadget, sans-serif;
+      position: absolute;
+      font-size: 10rem;
+      margin: 0;
+      word-break: break-word;
+    }
+
+    .fade-in {
       opacity: 1;
       animation: fadeIn 0.7s ease;
     }
@@ -102,7 +192,7 @@
       top: 1%;
       font-weight: bold;
     }
-    </style>
+  </style>
 </head>
 
 <body>
@@ -126,35 +216,41 @@
 
     // Randomize adjs
     const adjsMap = buildMap(adjs);
-    const randomAdjId = retrieveAdjIdByChance(Array.from(adjsMap.values()));
-    const adj = adjsMap.get(randomAdjId);
-
-    const chance = adj.chance *= CHANCEMULTIPLIER;
-    sessionStorage.setItem(randomAdjId, chance);
+    const updatedAdjObject = updateRandomAdjMap(adjsMap);
 
     //Randomize backgroundColor
-    const randomBackgroundColor = getRandomBackgroundColor(((randomAdjId + 1)), (chance * 1000));
+    const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
 
     // Template
     const appDiv = document.getElementById('app');
-    appDiv.className = 'fade-in';
-    appDiv.style.backgroundColor = randomBackgroundColor;
-    appDiv.innerHTML = `<small class="fixed">Press r to random</small><h1>${adj.value}</h1>`;
+    appDiv.innerHTML = `<small class="fixed">Press r to random</small><h1 id="value">${updatedAdjObject.value}</h1>`;
+    randomizeTemplate(randomBackgroundColor);
     window.onkeypress = rKey;
 
     // Functions
+    // --------------------------------- //
+    // Template
+    function randomizeTemplate(randomBackgroundColor) {
+      appDiv.className = 'fade-in';
+      appDiv.style.backgroundColor = randomBackgroundColor;
+    }
+
     // --------------------------------- //
     // Adjs
     function buildMap(adjs) {
       const adjsMap = new Map();
       adjs.forEach((value, index) => {
-        const sessionChance = sessionStorage.getItem(index);
-        if (sessionChance) {
-          return adjsMap.set(index, { value, chance: sessionChance });
-        }
         return adjsMap.set(index, { value, chance: 1 });
       });
       return adjsMap;
+    }
+
+    function updateRandomAdjMap() {
+      randomAdjId = retrieveAdjIdByChance(Array.from(adjsMap.values()));
+      adj = adjsMap.get(randomAdjId);
+      chance = adj.chance *= CHANCEMULTIPLIER;
+      adjsMap.set(randomAdjId, { value: adj.value, chance });
+      return { index: randomAdjId, value: adj.value, chance };
     }
 
     function retrieveAdjIdByChance() {
@@ -169,6 +265,7 @@
       }, { id: -1, highterRandomValue: -1 });
       return id;
     }
+
     // --------------------------------- //
     // BackgroundColor
     function getRandomBackgroundColor(id, value) {
@@ -201,7 +298,10 @@
       if (e && (e.code === 'KeyR')) {
         appDiv.className = 'fade-out';
         setTimeout(() => {
-          location.reload();
+          const updatedAdjObject = updateRandomAdjMap(adjsMap);
+          const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
+          document.getElementById('value').innerHTML = updatedAdjObject.value;
+          randomizeTemplate(randomBackgroundColor);
         }, 400);
       }
     }
