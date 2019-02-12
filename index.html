@@ -114,14 +114,14 @@
 
     const adjs = [
       'mostro', 'genio', 'figura', 'tifón', 'capo', 'torero', 'número 1', 'crack', 'mastodonte', 'batería de grupo infantil',
-      'cuádruple bombo', 'ídolo', 'chaval', 'champion', 'referente', 'maquina', 'artista', 'elemento', 'jefe', 'fiera',
+      'cuádruple bombo', 'ídolo', 'chaval', 'champion', 'referente', 'máquina', 'artista', 'elemento', 'jefe', 'fiera',
       'maestro', 'socio', 'golfo', 'valiente', 'héroe', 'tanque', 'fenómeno', 'gacela', 'tigre', 'bestia', 'titán', 'gigante',
       'prenda', 'coloso', 'hacha', 'mostrenco', 'campeón', 'helicóptero', 'killer', 'ciclón', 'pieza', 'brontosaurio', 'vikingo',
       'vividor', 'crack', 'animal', 'gigante', 'caimán', 'tiranosaurio', 'superman', 'semental', 'ninja', 'genio', 'tsunami',
-      'león', 'terminator', 'goliat', 'terremoto', 'tigre', 'vaquero', 'tanque', 'mole', 'samurai', 'coloso', 'paladin',
+      'león', 'terminator', 'goliat', 'terremoto', 'tigre', 'vaquero', 'tanque', 'mole', 'samurai', 'coloso', 'paladín',
       'willyrex', 'lobezno', 'velociraptor', 'espectro', 'godzilla', 'caza de combate', 'adamantium', 'robocop', 'zeus',
       'capitán', 'king kong', 'depredador', 'tornado', 'monster truck', 'presa canario', 'johnny bravo', 'mastodonte', 'coronel',
-      'canallita', 'champion', 'chulazo', 'truhan', 'maquinola', 'mamotreto', 'mosampo', 'piano de cola'
+      'canallita', 'champion', 'chulazo', 'truhán', 'maquinola', 'mamotreto', 'mosampo', 'piano de cola'
     ];
 
     // Randomize adjs
@@ -173,7 +173,7 @@
     // BackgroundColor
     function getRandomBackgroundColor(id, value) {
       const hexEquivalent = { 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F', };
-      const alphaHexPertentages = ['99', 'A6', 'B3', 'BF', 'CC', 'D9', 'E6'];
+      const alphaHexPertentages = ['33', '40', '4D', '59', '66', '73', '80', '8C', '99', 'A6', 'B3', 'BF', 'CC'];
       const divideToHexadecimal = 16;
       let baseTenNumber = id * value;
       let remainder = 0;
@@ -198,14 +198,11 @@
     // --------------------------------- //
     // Capturing keys
     function rKey(e) {
-      
       if (e && (e.code === 'KeyR')) {
         appDiv.className = 'fade-out';
         setTimeout(() => {
           location.reload();
         }, 400);
-      } else if (e.key > 0) {
-        appDiv.style.background = `url(/monstro/images/${e.key}.jpg) center`;
       }
     }
   </script>
