@@ -197,7 +197,9 @@
 
 <body>
 
-  <div id="app"></div>
+  <div id="app">
+    <small class="fixed">Press r to random</small><h1 id="value"></h1>
+  </div>
   <script>
 
     const CHANCEMULTIPLIER = 0.9;
@@ -223,8 +225,9 @@
 
     // Template
     const appDiv = document.getElementById('app');
-    appDiv.innerHTML = `<small class="fixed">Press r to random</small><h1 id="value">${updatedAdjObject.value}</h1>`;
     updateTemplate(randomBackgroundColor);
+    const valueText = document.getElementById('value');
+    valueText.innerHTML = updatedAdjObject.value;
     window.onkeypress = rKey;
 
     // Functions
@@ -300,7 +303,7 @@
         setTimeout(() => {
           const updatedAdjObject = updateRandomAdjMap(adjsMap);
           const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
-          document.getElementById('value').innerHTML = updatedAdjObject.value;
+          valueText.innerHTML = updatedAdjObject.value;
           updateTemplate(randomBackgroundColor);
         }, 400);
       }
