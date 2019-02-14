@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/x-icon" href="/monstro/favicon.ico">
-    <title>Monstro</title>
-    <style>
-        html, body, div, span, applet, object, iframe,
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/x-icon" href="/monstro/favicon.ico">
+  <title>Monstro</title>
+  <style>
+    html, body, div, span, applet, object, iframe,
         h1, h2, h3, h4, h5, h6, p, blockquote, pre,
         a, abbr, acronym, address, big, cite, code,
         del, dfn, em, img, ins, kbd, q, s, samp,
@@ -21,91 +21,225 @@
         figure, figcaption, footer, header, hgroup, 
         menu, nav, output, ruby, section, summary,
         time, mark, audio, video {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
-        }
-        /* HTML5 display-role reset for older browsers */
-        article, aside, details, figcaption, figure, 
-        footer, header, hgroup, menu, nav, section {
-            display: block;
-        }
-        body {
-            line-height: 1;
-        }
-        ol, ul {
-            list-style: none;
-        }
-        blockquote, q {
-            quotes: none;
-        }
-        blockquote:before, blockquote:after,
-        q:before, q:after {
-            content: '';
-            content: none;
-        }
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-      #app {
-        display: flex;
-        justify-content: center;
-        height: 100vh;
-        align-items: center;
-        flex-wrap: wrap;
-        text-align: center;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+
+    /* HTML5 display-role reset for older browsers */
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+      display: block;
+    }
+
+    body {
+      line-height: 1;
+    }
+
+    ol,
+    ul {
+      list-style: none;
+    }
+
+    blockquote,
+    q {
+      quotes: none;
+    }
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+      content: '';
+      content: none;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    #app {
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      align-items: center;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Arial Black", Gadget, sans-serif;
+      position: absolute;
+      font-size: 10rem;
+      margin: 0;
+      word-break: break-word;
+    }
+
+    .fade-in {
+      opacity: 1;
+      animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: .1;
       }
-      h1 {
-        font-family: "Arial Black", Gadget, sans-serif;
-        position: absolute;
-        font-size: 10rem;
-        margin: 0;
-        word-break: break-word;
+
+      100% {
+        opacity: 1;
       }
-    </style>
+    }
+
+    .fade-out {
+      opacity: 0;
+      animation: fadeOut 0.5s, ease;
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: .1;
+      }
+    }
+
+    .fixed {
+      position: fixed;
+      left: 1%;
+      top: 1%;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
-  
-  <div id="app"></div>
+
+  <div id="app">
+    <small class="fixed">Press r to random</small><h1 id="value"></h1>
+  </div>
   <script>
 
     const CHANCEMULTIPLIER = 0.9;
 
     const adjs = [
-      'mostro', 'genio', 'figura', 'tifón', 'capo', 'torero', 'número 1', 'crack', 'mastodonte', 'batería de grupo', 'infantil', 'cuádruple bombo', 'ídolo', 'chaval', 'champion', 'referente', 'maquina', 'artista', 'elemento', 'jefe', 'fiera', 'maestro', 'socio', 'golfo', 'valiente', 'héroe', 'tanque', 'fenómeno', 'gacela', 'tigre', 'bestia', 'titán', 'gigante', 'prenda', 'coloso', 'hacha', 'mostrenco', 'campeón', 'helicóptero', 'killer', 'ciclón', 'pieza', 'brontosaurio', 'vikingo', 'vividor', 'crack', 'animal', 'gigante', 'caimán', 'tiranosaurio', 'superman', 'semental', 'ninja', 'genio', 'tsunami', 'león', 'terminator', 'goliat', 'terremoto', 'tigre', 'vaquero', 'tanque', 'mole', 'samurai', 'coloso', 'paladin', 'willyrex', 'lobezno', 'velociraptor', 'espectro', 'godzilla', 'caza de combate', 'adamantium', 'robocop', 'zeus', 'capitán', 'king kong', 'depredador', 'tornado', 'monster truck', 'presa canario', 'johnny bravo', 'mastodonte', 'coronel', 'canallita', 'champion', 'chulazo', 'truhan', 'maquinola', 'mamotreto', 'mosampo', 'piano de cola'
+      'mostro', 'genio', 'figura', 'tifón', 'capo', 'torero', 'número 1', 'crack', 'mastodonte', 'batería de grupo infantil',
+      'cuádruple bombo', 'ídolo', 'chaval', 'champion', 'referente', 'máquina', 'artista', 'elemento', 'jefe', 'fiera',
+      'maestro', 'socio', 'golfo', 'valiente', 'héroe', 'tanque', 'fenómeno', 'gacela', 'tigre', 'bestia', 'titán', 'gigante',
+      'prenda', 'coloso', 'hacha', 'mostrenco', 'campeón', 'helicóptero', 'killer', 'ciclón', 'pieza', 'brontosaurio', 'vikingo',
+      'vividor', 'crack', 'animal', 'gigante', 'caimán', 'tiranosaurio', 'superman', 'semental', 'ninja', 'genio', 'tsunami',
+      'león', 'terminator', 'goliat', 'terremoto', 'tigre', 'vaquero', 'tanque', 'mole', 'samurai', 'coloso', 'paladín',
+      'willyrex', 'lobezno', 'velociraptor', 'espectro', 'godzilla', 'caza de combate', 'adamantium', 'robocop', 'zeus',
+      'capitán', 'king kong', 'depredador', 'tornado', 'monster truck', 'presa canario', 'johnny bravo', 'mastodonte', 'coronel',
+      'canallita', 'champion', 'chulazo', 'truhán', 'maquinola', 'mamotreto', 'mosampo', 'piano de cola'
     ];
 
-    const adjsMap = new Map();
-    adjs.forEach((value, index) => {
-      if (sessionStorage.getItem(index)) {
-        const sessionChance = sessionStorage.getItem(index)
-        return adjsMap.set(index, { value, chance: sessionChance });
-      }
-      return adjsMap.set(index, { value, chance: 1 });
-    });
+    // Randomize adjs
+    const adjsMap = buildMap(adjs);
+    const updatedAdjObject = updateRandomAdjMap(adjsMap);
 
-    const randomAdjId = Array.from(adjsMap.values()).reduce(({ id, higherRandomValue }, item, index) => {
+    //Randomize backgroundColor
+    const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
 
-      const currentRandomValue = Math.random() * item.chance * adjsMap.size;
-
-      return currentRandomValue > higherRandomValue
-        ? { id: index, higherRandomValue: currentRandomValue }
-        : { id, higherRandomValue };
-
-    }, { id: -1, higherRandomValue: -1 }).id;
-
-    const adj = adjsMap.get(randomAdjId);
-
-    const chance = adj.chance *= CHANCEMULTIPLIER;
-    sessionStorage.setItem(randomAdjId, chance);
-
+    // Template
     const appDiv = document.getElementById('app');
-    appDiv.innerHTML = `<h1>${adj.value}</h1>`;
+    updateTemplate(randomBackgroundColor);
+    const valueText = document.getElementById('value');
+    valueText.innerHTML = updatedAdjObject.value;
+    window.onkeypress = rKey;
+
+    // Functions
+    // --------------------------------- //
+    // Template
+    function updateTemplate(randomBackgroundColor) {
+      appDiv.className = 'fade-in';
+      appDiv.style.backgroundColor = randomBackgroundColor;
+    }
+
+    // --------------------------------- //
+    // Adjs
+    function buildMap(adjs) {
+      const adjsMap = new Map();
+      adjs.forEach((value, index) => {
+        return adjsMap.set(index, { value, chance: 1 });
+      });
+      return adjsMap;
+    }
+
+    function updateRandomAdjMap() {
+      randomAdjId = retrieveAdjIdByChance(Array.from(adjsMap.values()));
+      adj = adjsMap.get(randomAdjId);
+      chance = adj.chance *= CHANCEMULTIPLIER;
+      adjsMap.set(randomAdjId, { value: adj.value, chance });
+      return { index: randomAdjId, value: adj.value, chance };
+    }
+
+    function retrieveAdjIdByChance() {
+      const { id } = Array.from(adjsMap.values()).reduce(({ id, highterRandomValue }, item, index) => {
+
+        const currentRandomValue = Math.random() * item.chance;
+
+        return currentRandomValue > highterRandomValue
+          ? { id: index, highterRandomValue: currentRandomValue }
+          : { id, highterRandomValue };
+
+      }, { id: -1, highterRandomValue: -1 });
+      return id;
+    }
+
+    // --------------------------------- //
+    // BackgroundColor
+    function getRandomBackgroundColor(id, value) {
+      const hexEquivalent = { 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F', };
+      const alphaHexPertentages = ['33', '40', '4D', '59', '66', '73', '80', '8C', '99', 'A6', 'B3', 'BF', 'CC'];
+      const divideToHexadecimal = 16;
+      let baseTenNumber = id * value;
+      let remainder = 0;
+      let lightColor = '';
+
+      do {
+        [baseTenNumber, remainder] = [Math.floor(baseTenNumber / divideToHexadecimal), Math.floor(baseTenNumber % divideToHexadecimal)];
+        remainder < 10 ? lightColor += remainder : lightColor += hexEquivalent[remainder];
+      } while (baseTenNumber >= 1 && lightColor.length < 6);
+
+      let sortedValueToHexadecimal = lightColor.split("").reverse().join("");
+      if (sortedValueToHexadecimal.length < 6) {
+        for (let i = sortedValueToHexadecimal.length; i < 6; i++) {
+          sortedValueToHexadecimal += '0';
+        }
+        sortedValueToHexadecimal = Array.from(sortedValueToHexadecimal).sort(() => .5 - Math.random()).toString().replace(/,/g, '');
+      }
+      const randomAlpha = alphaHexPertentages[Math.floor(Math.random() * alphaHexPertentages.length)];
+
+      return `#${sortedValueToHexadecimal}${randomAlpha}`;
+    }
+    // --------------------------------- //
+    // Capturing keys
+    function rKey(e) {
+      if (e && (e.code === 'KeyR')) {
+        appDiv.className = 'fade-out';
+        setTimeout(() => {
+          const updatedAdjObject = updateRandomAdjMap(adjsMap);
+          const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
+          valueText.innerHTML = updatedAdjObject.value;
+          updateTemplate(randomBackgroundColor);
+        }, 400);
+      }
+    }
   </script>
 </body>
 
