@@ -27,6 +27,7 @@
       font-size: 100%;
       font: inherit;
       vertical-align: baseline;
+      color: #333;
     }
 
     /* HTML5 display-role reset for older browsers */
@@ -120,9 +121,13 @@
 
     .fixed {
       position: fixed;
-      left: 1%;
       top: 1%;
       font-weight: bold;
+    }
+    
+    .fixed-bottom {
+      position: fixed;
+      bottom: 1%;
     }
   </style>
 </head>
@@ -130,7 +135,9 @@
 <body>
 
   <div id="app">
-    <small class="fixed">Press r to random</small><h1 id="value"></h1>
+    <small class="fixed">Press r to random</small>
+    <h1 id="value"></h1>
+    <small class="fixed-bottom"><a href="https://github.com/pouyio/monstro">Pull Requests are welcome</a></small>
   </div>
   <script>
 
