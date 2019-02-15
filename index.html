@@ -7,6 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/x-icon" href="/monstro/favicon.ico">
   <title>Monstro</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134556247-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-134556247-1');
+  </script>
+
   <style>
     html, body, div, span, applet, object, iframe,
         h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -27,6 +37,7 @@
       font-size: 100%;
       font: inherit;
       vertical-align: baseline;
+      color: #333;
     }
 
     /* HTML5 display-role reset for older browsers */
@@ -83,7 +94,7 @@
     h1 {
       font-family: "Arial Black", Gadget, sans-serif;
       position: absolute;
-      font-size: 10rem;
+      font-size: 12vw;
       margin: 0;
       word-break: break-word;
     }
@@ -120,9 +131,13 @@
 
     .fixed {
       position: fixed;
-      left: 1%;
       top: 1%;
       font-weight: bold;
+    }
+    
+    .fixed-bottom {
+      position: fixed;
+      bottom: 1%;
     }
   </style>
 </head>
@@ -130,7 +145,9 @@
 <body>
 
   <div id="app">
-    <small class="fixed">Press r to random</small><h1 id="value"></h1>
+    <small class="fixed">Press r to random</small>
+    <h1 id="value"></h1>
+    <small class="fixed-bottom"><a href="https://github.com/pouyio/monstro">Pull Requests are welcome</a></small>
   </div>
   <script>
 
@@ -145,7 +162,9 @@
       'león', 'terminator', 'goliat', 'terremoto', 'tigre', 'vaquero', 'tanque', 'mole', 'samurai', 'coloso', 'paladín',
       'willyrex', 'lobezno', 'velociraptor', 'espectro', 'godzilla', 'caza de combate', 'adamantium', 'robocop', 'zeus',
       'capitán', 'king kong', 'depredador', 'tornado', 'monster truck', 'presa canario', 'johnny bravo', 'mastodonte', 'coronel',
-      'canallita', 'champion', 'chulazo', 'truhán', 'maquinola', 'mamotreto', 'mosampo', 'piano de cola'
+      'canallita', 'chulazo', 'truhán', 'maquinola', 'mamotreto', 'mosampo', 'piano de cola', 'inconmensurable', 'salmonete',
+      'sempiterno', 'incesante', 'imperturbable', 'huracán', 'pecho albarda', 'majestuoso', 'mástil', 'ministro', 'baluarte',
+      'alcalde', 'sultán', 'príncipe', 'megalodón', 'boeing 747'
     ];
 
     // Randomize adjs
@@ -204,8 +223,8 @@
     // --------------------------------- //
     // BackgroundColor
     function getRandomBackgroundColor(id, value) {
-      const hexEquivalent = { 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F', };
-      const alphaHexPertentages = ['33', '40', '4D', '59', '66', '73', '80', '8C', '99', 'A6', 'B3', 'BF', 'CC'];
+      const hexEquivalent = { 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F' };
+      const alphaHexPertentages = ['33', '40', '4D', '59', '66', '73', '80', '8C', '99'];
       const divideToHexadecimal = 16;
       let baseTenNumber = id * value;
       let remainder = 0;
