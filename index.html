@@ -85,7 +85,7 @@
     #app {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       height: 100vh;
       align-items: center;
       flex-wrap: wrap;
@@ -133,26 +133,25 @@
       }
     }
 
-    .fixed {
-      position: fixed;
-      top: 1%;
+    .info {
+      margin: 1%;
+    }
+    .bold {
       font-weight: bold;
     }
-    
-    .fixed-bottom {
-      position: fixed;
-      bottom: 1%;
-    }
+
   </style>
 </head>
 
 <body>
 
   <div id="app">
-    <small class="fixed">Press r to random</small>
-    <p>Qué pasa</p>
-    <h1 id="value"></h1>
-    <small class="fixed-bottom"><a href="https://github.com/pouyio/monstro">Pull Requests are welcome</a></small>
+    <small class="info bold">Press r to random</small>
+    <div id="clickArea">
+      <p>Qué pasa</p>
+      <h1 id="value"></h1>
+    </div>
+    <small class="info"><a href="https://github.com/pouyio/monstro">Pull Requests are welcome</a></small>
   </div>
   <script>
 
@@ -186,6 +185,8 @@
     const valueText = document.getElementById('value');
     valueText.innerHTML = updatedAdjObject.value;
     window.onkeypress = rKey;
+    const clickArea = document.getElementById('clickArea');
+    clickArea.addEventListener("click", eventAction);
 
     // Functions
     // --------------------------------- //
@@ -256,14 +257,18 @@
     // Capturing keys
     function rKey(e) {
       if (e && (e.code === 'KeyR')) {
-        appDiv.className = 'fade-out';
+        eventAction(e);
+      }
+    }
+
+    function eventAction(e) {
+      appDiv.className = 'fade-out';
         setTimeout(() => {
           const updatedAdjObject = updateRandomAdjMap(adjsMap);
           const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
           valueText.innerHTML = updatedAdjObject.value;
           updateTemplate(randomBackgroundColor);
         }, 400);
-      }
     }
   </script>
 </body>
