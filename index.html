@@ -1,280 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Monstro" />
+    <meta property="og:image" content="__OG_IMAGE__" />
+    <meta
+      property="og:description"
+      content="Get your daily awesome adjective"
+    />
+    <meta property="og:url" content="https://monstro.vercel.app" />
+    <link rel="shortcut icon" type="image/x-icon" href="/monstro/favicon.ico" />
+    <title>Monstro</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-134556247-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" type="image/x-icon" href="/monstro/favicon.ico">
-  <title>Monstro</title>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134556247-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+      gtag("config", "UA-134556247-1");
+    </script>
 
-    gtag('config', 'UA-134556247-1');
-  </script>
-
-  <style>
-    html, body, div, span, applet, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        a, abbr, acronym, address, big, cite, code,
-        del, dfn, em, img, ins, kbd, q, s, samp,
-        small, strike, strong, sub, sup, tt, var,
-        b, u, i, center,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, embed, 
-        figure, figcaption, footer, header, hgroup, 
-        menu, nav, output, ruby, section, summary,
-        time, mark, audio, video {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      font-size: 100%;
-      font: inherit;
-      vertical-align: baseline;
-      color: #333;
-    }
-
-    /* HTML5 display-role reset for older browsers */
-    article,
-    aside,
-    details,
-    figcaption,
-    figure,
-    footer,
-    header,
-    hgroup,
-    menu,
-    nav,
-    section {
-      display: block;
-    }
-
-    body {
-      line-height: 1;
-    }
-
-    ol,
-    ul {
-      list-style: none;
-    }
-
-    blockquote,
-    q {
-      quotes: none;
-    }
-
-    blockquote:before,
-    blockquote:after,
-    q:before,
-    q:after {
-      content: '';
-      content: none;
-    }
-
-    table {
-      border-collapse: collapse;
-      border-spacing: 0;
-    }
-
-    #app {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100vh;
-      align-items: center;
-      flex-wrap: wrap;
-      text-align: center;
-    }
-
-    p {
-      font-family: "Arial Black", Gadget, sans-serif;
-      font-size: 3vw;
-    }
-
-    h1 {
-      font-family: "Arial Black", Gadget, sans-serif;
-      font-size: 12vw;
-      word-break: break-word;
-    }
-
-    .fade-in {
-      opacity: 1;
-      animation: fadeIn 0.7s ease;
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: .1;
+    <style>
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+        color: #333;
       }
 
-      100% {
+      /* HTML5 display-role reset for older browsers */
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+
+      body {
+        line-height: 1;
+      }
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      blockquote,
+      q {
+        quotes: none;
+      }
+
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: "";
+        content: none;
+      }
+
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      #app {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: center;
+        /* transition: background-color 0.7s ease; */
+        background-color: #__OG_COLOR__;
+      }
+
+      p {
+        font-family: "Arial Black", Gadget, sans-serif;
+        font-size: 3vw;
+      }
+
+      h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        font-size: 12vw;
+        word-break: break-word;
+        cursor: pointer;
+      }
+
+      .fade-in {
         opacity: 1;
-      }
-    }
-
-    .fade-out {
-      opacity: 0;
-      animation: fadeOut 0.5s, ease;
-    }
-
-    @keyframes fadeOut {
-      0% {
-        opacity: 1;
+        animation: fadeIn 0.7s ease;
       }
 
-      100% {
-        opacity: .1;
-      }
-    }
-
-    .info {
-      margin: 1%;
-    }
-    .bold {
-      font-weight: bold;
-    }
-
-  </style>
-</head>
-
-<body>
-
-  <div id="app">
-    <small class="info bold">Press r to random</small>
-    <div id="clickArea">
-      <p>Qué pasa</p>
-      <h1 id="value"></h1>
-    </div>
-    <small class="info"><a href="https://github.com/pouyio/monstro">Pull Requests are welcome</a></small>
-  </div>
-  <script>
-
-    const CHANCEMULTIPLIER = 0.9;
-
-    const adjs = [
-      'adamantium', 'alcalde', 'animal', 'armadillo', 'artista', 'baluarte', 'batería de grupo infantil', 'beluga', 'bestia', 
-      'boeing 747', 'brontosaurio', 'caballito de mar', 'caimán', 'campeón', 'canallita', 'capitán', 'capo', 'caza de combate', 
-      'champion', 'chaval', 'chulazo', 'ciclón', 'cogollito', 'coloso', 'coronel', 'crack', 'cuádruple bombo', 'cóndor', 
-      'depredador', 'destroyer', 'elemento', 'elfo', 'espectro', 'espía ruso', 'fenómeno', 'fiera', 'figura', 'gacela', 
-      'genio', 'gigante', 'godzilla', 'golfo', 'goliat', 'hacha', 'halcón peregrino', 'helicóptero', 'huracán', 
-      'héroe', 'imperturbable', 'incesante', 'inconmensurable', 'inquebrantable', 'jefe', 'johnny bravo', 'kalasnikov', 'killer', 
-      'king kong', 'latifundista', 'león', 'lince', 'lobezno', 'machoman', 'maestro', 'majestuoso', 'malote', 'mamotreto', 
-      'maquinola', 'mastodonte', 'megalodón', 'ministro', 'mole', 'monster truck', 'mosampo', 'mostrenco', 'mostro', 'máquina', 
-      'mástil', 'ninja', 'número 1', 'paladín', 'pantera', 'pastelito', 'pecho albarda', 'pez espada', 'piano de cola', 'pieza', 
-      'pionero', 'pirata', 'pirámide', 'prenda', 'presa canario', 'príncipe', 'referente', 'robocop', 'salmonete', 'samurai', 
-      'semental', 'sempiterno', 'severiano ballesteros', 'sharknado', 'socio', 'sultán', 'superman', 'tanque', 'terminator', 
-      'terrateniente', 'terremoto', 'thanos', 'tifón', 'tigre', 'tiranosaurio', 'titán', 'torero', 'tornado', 'tron', 'truhán', 
-      'tsunami', 'valiente', 'vaquero', 'velociraptor', 'vikingo', 'vividor', 'víbora', 'willyrex', 'zeus', 'zigurat', 'ídolo', 
-      'ciclogénesis explosiva', 'coronavirus', 'COVID-19', 'bestia parda', 'dromedario', 'zagal', 'gulo gulo gulo', 'mecenas', 
-      'guacamayo', 'guacho', 'buenage', 'sánscrito', 'rompecorazones', 'guardameta', 'zaguero', 'charrúa', 'mítico', 'paralelepípedo',
-      'melaza', 'espléndido', 'merengón', 'asintomático', 'DANA', 'encofrador'
-    ];
-
-    // Randomize adjs
-    const adjsMap = buildMap(adjs);
-    const updatedAdjObject = updateRandomAdjMap(adjsMap);
-
-    //Randomize backgroundColor
-    const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
-
-    // Template
-    const appDiv = document.getElementById('app');
-    updateTemplate(randomBackgroundColor);
-    const valueText = document.getElementById('value');
-    valueText.innerHTML = updatedAdjObject.value;
-    window.onkeypress = rKey;
-    const clickArea = document.getElementById('clickArea');
-    clickArea.addEventListener("click", eventAction);
-
-    // Functions
-    // --------------------------------- //
-    // Template
-    function updateTemplate(randomBackgroundColor) {
-      appDiv.className = 'fade-in';
-      appDiv.style.backgroundColor = randomBackgroundColor;
-    }
-
-    // --------------------------------- //
-    // Adjs
-    function buildMap(adjs) {
-      const adjsMap = new Map();
-      adjs.forEach((value, index) => {
-        return adjsMap.set(index, { value, chance: 1 });
-      });
-      return adjsMap;
-    }
-
-    function updateRandomAdjMap() {
-      randomAdjId = retrieveAdjIdByChance(Array.from(adjsMap.values()));
-      adj = adjsMap.get(randomAdjId);
-      chance = adj.chance *= CHANCEMULTIPLIER;
-      adjsMap.set(randomAdjId, { value: adj.value, chance });
-      return { index: randomAdjId, value: adj.value, chance };
-    }
-
-    function retrieveAdjIdByChance() {
-      const { id } = Array.from(adjsMap.values()).reduce(({ id, highterRandomValue }, item, index) => {
-
-        const currentRandomValue = Math.random() * item.chance;
-
-        return currentRandomValue > highterRandomValue
-          ? { id: index, highterRandomValue: currentRandomValue }
-          : { id, highterRandomValue };
-
-      }, { id: -1, highterRandomValue: -1 });
-      return id;
-    }
-
-    // --------------------------------- //
-    // BackgroundColor
-    function getRandomBackgroundColor(id, value) {
-      const hexEquivalent = { 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F' };
-      const alphaHexPertentages = ['33', '40', '4D', '59', '66', '73', '80', '8C', '99'];
-      const divideToHexadecimal = 16;
-      let baseTenNumber = id * value;
-      let remainder = 0;
-      let lightColor = '';
-
-      do {
-        [baseTenNumber, remainder] = [Math.floor(baseTenNumber / divideToHexadecimal), Math.floor(baseTenNumber % divideToHexadecimal)];
-        remainder < 10 ? lightColor += remainder : lightColor += hexEquivalent[remainder];
-      } while (baseTenNumber >= 1 && lightColor.length < 6);
-
-      let sortedValueToHexadecimal = lightColor.split("").reverse().join("");
-      if (sortedValueToHexadecimal.length < 6) {
-        for (let i = sortedValueToHexadecimal.length; i < 6; i++) {
-          sortedValueToHexadecimal += '0';
+      @keyframes fadeIn {
+        0% {
+          opacity: 0.1;
         }
-        sortedValueToHexadecimal = Array.from(sortedValueToHexadecimal).sort(() => .5 - Math.random()).toString().replace(/,/g, '');
+
+        100% {
+          opacity: 1;
+        }
       }
-      const randomAlpha = alphaHexPertentages[Math.floor(Math.random() * alphaHexPertentages.length)];
 
-      return `#${sortedValueToHexadecimal}${randomAlpha}`;
-    }
-    // --------------------------------- //
-    // Capturing keys
-    function rKey(e) {
-      if (e && (e.code === 'KeyR')) {
-        eventAction(e);
+      .fade-out {
+        opacity: 0;
+        animation: fadeOut 0.5s, ease;
       }
-    }
 
-    function eventAction(e) {
-      appDiv.className = 'fade-out';
-        setTimeout(() => {
-          const updatedAdjObject = updateRandomAdjMap(adjsMap);
-          const randomBackgroundColor = getRandomBackgroundColor(((updatedAdjObject.index + 1)), (updatedAdjObject.chance * 1000));
-          valueText.innerHTML = updatedAdjObject.value;
-          updateTemplate(randomBackgroundColor);
-        }, 400);
-    }
-  </script>
-</body>
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
 
+        100% {
+          opacity: 0.1;
+        }
+      }
+
+      .info {
+        margin: 1%;
+      }
+      .bold {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <small class="info bold">Press r to random</small>
+      <div id="clickArea">
+        <p>Qué pasa</p>
+        <h1 id="value">__OG_ADJ__</h1>
+      </div>
+      <small class="info"
+        ><a href="https://github.com/pouyio/monstro"
+          >Pull Requests are welcome</a
+        ></small
+      >
+    </div>
+    <script src="app.js"></script>
+  </body>
 </html>
