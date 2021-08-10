@@ -1,4 +1,4 @@
-# [Monstro](https://pouyio.github.io/monstro/index.html)
+# [Monstro](https://monstro.vercel.app/)
 
 Get your daily awesome adjective
 
