@@ -10,7 +10,7 @@ clickArea.addEventListener("click", eventAction);
 // Template
 function updateTemplate(text, randomBackgroundColor) {
   valueText.innerHTML = text;
-  appDiv.className = "fade-in";
+  clickArea.className = "fade-in";
   appDiv.style.backgroundColor = "#" + randomBackgroundColor;
 }
 
@@ -23,7 +23,8 @@ function rKey(e) {
 }
 
 function eventAction() {
-  appDiv.className = "fade-out";
+  appDiv.style.backgroundColor = "#FFF";
+  clickArea.className = "fade-out";
   setTimeout(async () => {
     const { adj, color } = await (await fetch("./api")).json();
     updateTemplate(adj, color);
