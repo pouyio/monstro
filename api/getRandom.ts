@@ -58,7 +58,7 @@ const getRandomBackgroundColor = (id: number) => {
 };
 
 export const getRandom = () => {
-  const index = random(adjs.length);
+  const index = random(adjs.length - 1);
   const color = getRandomBackgroundColor(index);
   return { adj: adjs[index], color };
 };
