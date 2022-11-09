@@ -1,8 +1,9 @@
-import data from "./adjs.json";
+import fetch from "node-fetch";
 
-const adjs: string[] = data;
+const API_KEY = "keydJdxwQuUaBjQLA";
+let adjs: string[] = [];
 
-const random = (max: number) => Math.floor(Math.random() * (max));
+const randomNumber = (max: number) => Math.floor(Math.random() * max);
 
 const getRandomBackgroundColor = (id: number) => {
   const alphaHexPertentages = [
@@ -16,7 +17,7 @@ const getRandomBackgroundColor = (id: number) => {
     "8C",
     "99",
   ];
-  let baseHexNumber = (id * 1000).toString(16).toUpperCase()
+  let baseHexNumber = (id * 1000).toString(16).toUpperCase();
 
   if (baseHexNumber.length < 6) {
     for (let i = baseHexNumber.length; i < 6; i++) {
@@ -27,13 +28,23 @@ const getRandomBackgroundColor = (id: number) => {
       .toString()
       .replace(/,/g, "");
   }
-  const randomAlpha = alphaHexPertentages[random(alphaHexPertentages.length)];
+  const randomAlpha =
+    alphaHexPertentages[randomNumber(alphaHexPertentages.length)];
 
   return `${baseHexNumber}${randomAlpha}`;
 };
 
-export const getRandom = () => {
-  const index = random(adjs.length);
+export const getRandom = async () => {
+  if (!adjs.length) {
+    const response = await fetch(
+      "https://api.airtable.com/v0/appzEOo9mZYfiP809/Adjetives?maxRecords=1000&view=Grid%20view&filterByFormula=%7BStatus%7D+%3D+'Live'",
+      { headers: { Authorization: `Bearer ${API_KEY}` } }
+    );
+    adjs = await response
+      .json()
+      .then((r: any) => r.record.map((item) => item.Name));
+  }
+  const index = randomNumber(adjs.length);
   const color = getRandomBackgroundColor(index);
   return { adj: adjs[index], color };
 };
