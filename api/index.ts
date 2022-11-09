@@ -5,8 +5,8 @@ import { getRandom } from "./getRandom";
 
 const app = express();
 
-app.get("/", (_, res) => {
-  const { adj, color } = getRandom();
+app.get("/", async (_, res) => {
+  const { adj, color } = await getRandom();
   fs.readFile(
     path.join(__dirname + "/../index.html"),
     "utf8",

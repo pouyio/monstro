@@ -36,13 +36,14 @@ const getRandomBackgroundColor = (id: number) => {
 
 export const getRandom = async () => {
   if (!adjs.length) {
+    console.log("making airtable api request");
     const response = await fetch(
       "https://api.airtable.com/v0/appzEOo9mZYfiP809/Adjetives?maxRecords=1000&view=Grid%20view&filterByFormula=%7BStatus%7D+%3D+'Live'",
       { headers: { Authorization: `Bearer ${API_KEY}` } }
     );
     adjs = await response
       .json()
-      .then((r: any) => r.record.map((item) => item.Name));
+      .then((r: any) => r.records.map((item) => item.fields.Name));
   }
   const index = randomNumber(adjs.length);
   const color = getRandomBackgroundColor(index);
